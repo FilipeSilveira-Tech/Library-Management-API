@@ -1,12 +1,16 @@
-export type ReaderCreated = {
+import type { Loans } from "../../database/generated/prisma/client";
+export interface ReaderCreated {
   name: string;
   email: string;
   phone: string;
   bio?: string;
-};
+}
 
-export type ReaderFull = ReaderCreated & {
-  id: number;
+export interface Reader {
   publicId: string;
-  loans: string[];
-};
+  name: string;
+  email: string;
+  phone: string;
+  bio: string | null;
+  loans: Loans[];
+}

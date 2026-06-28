@@ -1,9 +1,9 @@
 import type { Request, Response } from "express";
-import ReaderGetAllService from "../Services/ReaderGetAll.service";
+import ReaderGetService from "../Services/ReaderGetAll.service";
 
 export default async (req: Request, res: Response): Promise<Response> => {
   try {
-    const result = await ReaderGetAllService();
+    const result = await ReaderGetService();
     return res.status(result.statusCode).json(result);
   } catch (erro) {
     console.error("❌ Erro interno: ", erro);
