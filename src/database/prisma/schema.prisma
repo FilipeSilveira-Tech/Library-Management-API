@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Campos: título, ISBN, autor, editora, categoria, ano, quantidadeDisponivel.
+model Books {
+  id                Int    @id @default(autoincrement())
+  title             String
+  ISBN              String @unique
+  author            String
+  publisher         String
+  category          String
+  year              String
+  availableQuantity Float
+  loansId           String
+  loans             Loans  @relation(fields: [loansId], references: [id])
+}
+
+// Campos: nome, email, telefone.
+model Readers {
+  id       Int     @id @default(autoincrement())
+  publicId String  @unique @default(uuid())
+  name     String
+  email    String  @unique
+  phone    String
+  bio      String?
+  loans    Loans[]
+}
+
+// Campos: livro, leitor, dataEmprestimo, dataPrevistaDevolucao, dataDevolucao, status.
+model Loans {
+  id                 String      @id @unique @default(uuid())
+  loanDate           DateTime    @default(now())
+  expectedReturnDate DateTime
+  returnDate         DateTime
+  status             LoansStatus
+  readerId           Int
+  reader             Readers     @relation(fields: [readerId], references: [id])
+  books              Books[]
+}
+
+enum LoansStatus {
+  CANCELLED
+  DAMAGED
+  EXPIRED
+  LOST
+  OVERDUE
+  RENEWED
+  REQUESTED
+  RETURNED
+}

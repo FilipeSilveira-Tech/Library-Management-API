@@ -1,0 +1,25 @@
+import "dotenv/config";
+import express from "express";
+const { PORT } = process.env;
+
+const app = express();
+app.use(express.json());
+
+// IMPORT ROTAS:
+import ReadersRoutes from "./resources/Readers/reader.routes";
+
+app.get("/health", (req, res, next) => {
+  const startTime = performance.now();
+  res.status(200).json({
+    success: true,
+    executionTime: Math.trunc(performance.now() - startTime),
+    uptime: process.uptime(),
+    message: "OK",
+  });
+});
+
+app.use(ReadersRoutes);
+
+app.listen(PORT, () => {
+  console.log(`API ONLINE! PORT ${PORT}`);
+});
