@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -12,21 +7,18 @@ datasource db {
   provider = "postgresql"
 }
 
-// Campos: título, ISBN, autor, editora, categoria, ano, quantidadeDisponivel.
 model Books {
-  id                Int    @id @default(autoincrement())
   title             String
-  ISBN              String @unique
+  ISBN              String      @unique
   author            String
   publisher         String
-  category          String
+  category          String[]
   year              String
-  availableQuantity Float
-  loansId           String
-  loans             Loans  @relation(fields: [loansId], references: [id])
+  availableQuantity Int
+  id                Int         @id @default(autoincrement())
+  loanItems         LoanItems[]
 }
 
-// Campos: nome, email, telefone.
 model Readers {
   id       Int     @id @default(autoincrement())
   publicId String  @unique @default(uuid())
@@ -37,16 +29,26 @@ model Readers {
   loans    Loans[]
 }
 
-// Campos: livro, leitor, dataEmprestimo, dataPrevistaDevolucao, dataDevolucao, status.
 model Loans {
   id                 String      @id @unique @default(uuid())
   loanDate           DateTime    @default(now())
   expectedReturnDate DateTime
-  returnDate         DateTime
+  returnDate         DateTime?
   status             LoansStatus
   readerId           Int
+  loanItems          LoanItems[]
   reader             Readers     @relation(fields: [readerId], references: [id])
-  books              Books[]
+}
+
+model LoanItems {
+  id       Int    @id @default(autoincrement())
+  quantity Int    @default(1)
+  loanId   String
+  bookId   Int
+  book     Books  @relation(fields: [bookId], references: [id])
+  loan     Loans  @relation(fields: [loanId], references: [id], onDelete: Cascade)
+
+  @@unique([loanId, bookId])
 }
 
 enum LoansStatus {

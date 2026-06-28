@@ -1,7 +1,7 @@
 import { Loans } from "../../database/generated/prisma/client";
 export interface BookCreated {
   title: string;
-  ISBN: string;
+  isbn: string;
   author: string;
   publisher: string;
   category: string;
