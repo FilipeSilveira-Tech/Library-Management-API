@@ -5,8 +5,9 @@ const router = Router();
 import ReaderCreate from "./Controllers/ReaderCreate.controller";
 import CreateSchema from "./Schemas/ReaderCreate.schema";
 import CreateMiddleware from "./Middlewares/ReaderCreate.middleware";
-
+import GetAllReaders from "./Controllers/ReaderGetAll.controller";
 // == ROTAS GET ==
+router.get("/readers", GetAllReaders);
 
 // == ROTAS POST ==
 router.post("/readers", CreateMiddleware(CreateSchema), ReaderCreate);

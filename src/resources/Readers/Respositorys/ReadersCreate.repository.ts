@@ -8,14 +8,13 @@ export default async (reader_data: ReaderCreated): Promise<DefaultResponse> => {
       data: {
         name: reader_data.name,
         email: reader_data.email,
-        phone: reader_data.name,
+        phone: reader_data.phone,
         bio: reader_data.bio || "Um entusiasta por leituras!",
       },
     });
     return {
       statusCode: 201,
       success: true,
-
       timestamp: new Date().toISOString(),
     };
   } catch (error) {
