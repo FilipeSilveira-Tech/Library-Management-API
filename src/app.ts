@@ -6,6 +6,8 @@ const app = express();
 app.use(express.json());
 
 // IMPORT ROTAS:
+import logRoute from "./resources/logMiddleware";
+app.use(logRoute);
 import ReadersRoutes from "./resources/Readers/reader.routes";
 
 app.get("/health", (req, res, next) => {

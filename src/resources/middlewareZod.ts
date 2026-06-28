@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { z, ZodObject } from "zod";
-import { AnyZodObject } from "zod/v3";
+import { ZodObject } from "zod";
 
 export default (schema: ZodObject) => {
   return async (
