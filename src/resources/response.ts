@@ -3,7 +3,7 @@ export interface HttpResponse {
   success: boolean;
   message?: string;
   timestamp?: string;
-  data?: object;
+  data?: object | object[] | null;
 }
 
 export enum HttpStatusCode {

@@ -12,12 +12,12 @@ Desenvolver uma API REST utilizando boas práticas de arquitetura, persistência
 ---
 
 # Tecnologias
-- [ ] Node.js
-- [ ] TypeScript
-- [ ] Express/Fastify
-- [ ] PostgreSQL
-- [ ] Prisma ORM
-- [ ] Zod
+- [x] Node.js
+- [x] TypeScript
+- [x] Express
+- [x] PostgreSQL
+- [x] Prisma ORM
+- [x] Zod
 - [ ] Swagger
 - [ ] Docker
 - [ ] JWT (Extra)
@@ -28,47 +28,44 @@ Desenvolver uma API REST utilizando boas práticas de arquitetura, persistência
 # Roadmap
 ## ✅ Fase 1 — Configuração Inicial
 ### Projeto
-- [ ] Criar repositório Git
-- [ ] Inicializar projeto Node
-- [ ] Configurar TypeScript
-- [ ] Configurar ESLint
-- [ ] Configurar Prettier
-- [ ] Configurar EditorConfig
-- [ ] Configurar Husky (Opcional)
-- [ ] Configurar Git Ignore
+- [x] Criar repositório Git
+- [x] Inicializar projeto Node
+- [x] Configurar TypeScript
+- [x] Configurar ESLint
+- [x] Configurar Git Ignore
 
 ### Ambiente
-- [ ] Criar arquivo `.env`
-- [ ] Criar `.env.example`
+- [x] Criar arquivo `.env`
+- [x] Criar `.env.example`
 - [ ] Configurar Docker
 - [ ] Configurar Docker Compose
-- [ ] Configurar PostgreSQL
+- [x] Configurar PostgreSQL
 
 ### Prisma
-- [ ] Instalar Prisma
-- [ ] Configurar datasource
-- [ ] Gerar primeira migration
+- [x] Instalar Prisma
+- [x] Configurar datasource
+- [x] Gerar primeira migration
 
 ---
 
 # ✅ Fase 2 — Modelagem
 ## Book
-- [ ] Criar Model
-- [ ] Criar Migration
-- [ ] Criar Repository
-- [ ] Criar Service
-- [ ] Criar Controller
-- [ ] Criar Rotas
+- [x] Criar Model
+- [x] Criar Migration
+- [] Criar Repository
+- [] Criar Service
+- [] Criar Controller
+- [] Criar Rotas
 
 ---
 
 ## Reader
-- [ ] Criar Model
-- [ ] Criar Migration
-- [ ] Criar Repository
-- [ ] Criar Service
-- [ ] Criar Controller
-- [ ] Criar Rotas
+- [x] Criar Model
+- [x] Criar Migration
+- [X] Criar Repository
+- [x] Criar Service
+- [x] Criar Controller
+- [x] Criar Rotas
 
 ---
 
@@ -84,32 +81,32 @@ Desenvolver uma API REST utilizando boas práticas de arquitetura, persistência
 
 # ✅ Fase 3 — CRUD Livros
 ## Endpoints
-- [ ] POST /books
-- [ ] GET /books
-- [ ] GET /books/:id
+- [x] POST /books
+- [x] GET /books
+- [x] GET /books/:id
 - [ ] PATCH /books/:id
 - [ ] DELETE /books/:id
 
 ## Regras
-- [ ] ISBN único
+- [x] ISBN único
 - [ ] Quantidade maior que zero
-- [ ] Validação de dados
-- [ ] Tratamento de erros
+- [x] Validação de dados
+- [x] Tratamento de erros
 
 ---
 
 # ✅ Fase 4 — CRUD Leitores
 ## Endpoints
-- [ ] POST /readers
-- [ ] GET /readers
-- [ ] GET /readers/:id
-- [ ] PATCH /readers/:id
-- [ ] DELETE /readers/:id
+- [x] POST /readers
+- [x] GET /readers
+- [x] GET /readers/:id
+- [x] PATCH /readers/:id
+- [x] DELETE /readers/:id
 
 ## Regras
-- [ ] Email único
-- [ ] Nome obrigatório
-- [ ] Telefone válido
+- [x] Email único
+- [x] Nome obrigatório
+- [x] Telefone válido
 
 ---
 

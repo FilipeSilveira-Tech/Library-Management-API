@@ -8,6 +8,7 @@ datasource db {
 }
 
 model Books {
+  id                Int         @id @default(autoincrement())
   title             String
   ISBN              String      @unique
   author            String
@@ -15,7 +16,6 @@ model Books {
   category          String[]
   year              String
   availableQuantity Int
-  id                Int         @id @default(autoincrement())
   loanItems         LoanItems[]
 }
 
