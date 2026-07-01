@@ -1,12 +1,22 @@
-import { HttpResponse, HttpStatusCode } from "../../response";
+import {
+  HttpResponse,
+  HttpStatusCode,
+  HttpSuccessStatus,
+} from "../../response";
 import BookGetByIdRepository from "../Repositories/BookGetById.repository";
 
 export default async (id: number): Promise<HttpResponse> => {
   const book = await BookGetByIdRepository(id);
-  return {
+  if (book == null) {
+    return HttpResponse({
+      statusCode: HttpStatusCode.NOT_FOUND,
+      success: HttpSuccessStatus.FALHA,
+      message: `Nenhum livro encontrado com o id ${id}`,
+    });
+  }
+  return HttpResponse({
     statusCode: HttpStatusCode.OK,
-    success: true,
-    timestamp: new Date().toISOString(),
+    success: HttpSuccessStatus.SUCESSO,
     data: { book },
-  };
+  });
 };

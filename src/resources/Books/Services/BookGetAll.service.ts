@@ -1,4 +1,8 @@
-import { HttpResponse, HttpStatusCode } from "../../response";
+import {
+  HttpResponse,
+  HttpStatusCode,
+  HttpSuccessStatus,
+} from "../../response";
 import BookGetsRepository from "../Repositories/BookGetAll.repository";
 
 export default async (
@@ -6,10 +10,9 @@ export default async (
   pageSize: number = 10,
 ): Promise<HttpResponse> => {
   const data = await BookGetsRepository(page, pageSize);
-  return {
+  return HttpResponse({
     statusCode: HttpStatusCode.OK,
-    success: true,
-    timestamp: new Date().toISOString(),
+    success: HttpSuccessStatus.SUCESSO,
     data,
-  };
+  });
 };

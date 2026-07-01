@@ -15,6 +15,8 @@ import BookCreateController from "./Controllers/BookCreate.controller";
 router.post("/books", MiddlewareZod(BookCreateSchema), BookCreateController);
 
 // === ROTA PATCH ===
+import BookPatchController from "./Controllers/BookPatch.controller";
+router.patch("/books", BookPatchController);
 
 // === ROTA DELTE ===
 

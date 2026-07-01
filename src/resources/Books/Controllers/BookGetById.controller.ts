@@ -1,36 +1,28 @@
 import type { Request, Response } from "express";
 import BookGetByIdService from "../Services/BookGetById.service";
 import { PrismaClientKnownRequestError } from "../../../database/generated/prisma/internal/prismaNamespace";
+import { HttpInternalError, HttpStatusCode } from "../../response";
 
 export default async (req: Request, res: Response): Promise<Response> => {
   try {
-    const timestamp = new Date().toISOString();
     const id = req.params?.id;
     if (!id) {
-      return res.status(400).json({
-        success: false,
-        message: "É obrigatório passar um id via query!",
-        timestamp: timestamp,
-      });
+      return res
+        .status(HttpStatusCode.BAD_REQUEST)
+        .json(HttpInternalError("É obrigatório passar um id via param!"));
     }
     const idNumber = Number(id);
-    const result = await BookGetByIdService(idNumber);
-    return res.status(result.statusCode).json(result);
+    const { statusCode, ...body } = await BookGetByIdService(idNumber);
+    return res.status(statusCode).json(body);
   } catch (erro) {
     if (
       erro instanceof PrismaClientKnownRequestError &&
       erro.code === "P2025"
     ) {
-      return res.status(404).json({
-        success: false,
-        message: "Nenhum livro foi encontrado!",
-        timestamp: new Date().toISOString(),
-      });
+      return res
+        .status(HttpStatusCode.NOT_FOUND)
+        .json(HttpInternalError("Nenhum livro foi encontrado!"));
     }
-    return res.status(500).json({
-      success: false,
-      message: "INTERNAL ERRO - 500",
-      timestamp: new Date().toISOString(),
-    });
+    return res.status(HttpStatusCode.SERVER_ERROR).json(HttpInternalError());
   }
 };

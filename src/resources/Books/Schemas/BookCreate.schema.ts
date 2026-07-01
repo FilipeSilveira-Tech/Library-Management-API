@@ -4,7 +4,7 @@ const isbnRegex = /^(?:97[89]-?)?[0-9]{1,5}-?[0-9]{1,7}-?[0-9]{1,7}-?[0-9X]$/;
 
 export default z.object({
   title: z.string("O título deve ser uma string"),
-  isbn: z
+  ISBN: z
     .string("O ISBN deve ser uma string")
     .regex(isbnRegex, "O ISBN inválido"),
   author: z.string("O nome do autor deve ser uma string"),
