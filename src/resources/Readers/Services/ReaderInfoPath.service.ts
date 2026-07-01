@@ -1,16 +1,20 @@
-import { HttpResponse, HttpStatusCode } from "../../response";
+import {
+  HttpResponse,
+  HttpStatusCode,
+  HttpSuccessStatus,
+} from "../../response";
 import { ReaderPatch } from "../reader.types";
 import ReaderInfoPatchRepository from "../Respositorys/ReaderInfoPatch.repository";
 
 export default async (
-  uuidReader: string,
+  email: string,
   readerData: ReaderPatch,
 ): Promise<HttpResponse> => {
-  await ReaderInfoPatchRepository(uuidReader, readerData);
-  return {
+  await ReaderInfoPatchRepository(email, readerData);
+
+  return HttpResponse({
     statusCode: HttpStatusCode.OK,
-    success: true,
-    message: "Usuário modificado com sucesso!",
-    timestamp: new Date().toISOString(),
-  };
+    success: HttpSuccessStatus.SUCESSO,
+    message: "✅ Leitor modificado com sucesso!",
+  });
 };

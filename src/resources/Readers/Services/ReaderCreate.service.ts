@@ -1,13 +1,16 @@
-import { HttpResponse, HttpStatusCode } from "../../response";
+import {
+  HttpResponse,
+  HttpStatusCode,
+  HttpSuccessStatus,
+} from "../../response";
 import { ReaderCreated } from "../reader.types";
 import ReaderCreateRepository from "../Respositorys/ReadersCreate.repository";
 
 export default async (reader_data: ReaderCreated): Promise<HttpResponse> => {
   await ReaderCreateRepository(reader_data);
-  return {
+  return HttpResponse({
     statusCode: HttpStatusCode.CREATED,
-    success: true,
+    success: HttpSuccessStatus.SUCESSO,
     message: "✅ Usuário criado com sucesso!",
-    timestamp: new Date().toISOString(),
-  };
+  });
 };

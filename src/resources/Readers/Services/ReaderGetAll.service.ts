@@ -1,12 +1,16 @@
-import { HttpResponse, HttpStatusCode } from "../../response";
+import {
+  HttpResponse,
+  HttpStatusCode,
+  HttpSuccessStatus,
+} from "../../response";
 import ReaderGetAllRepository from "../Respositorys/ReaderGetAll.repository";
 
 export default async (): Promise<HttpResponse> => {
   const readers = await ReaderGetAllRepository();
-  return {
+
+  return HttpResponse({
     statusCode: HttpStatusCode.OK,
-    success: true,
-    timestamp: new Date().toISOString(),
+    success: HttpSuccessStatus.SUCESSO,
     data: { readers },
-  };
+  });
 };
